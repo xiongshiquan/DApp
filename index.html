@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Solana DApp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #connectButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #publicKey {
+            margin-top: 20px;
+            font-size: 18px;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simple Solana DApp</h1>
+    <button id="connectButton">Connect Wallet</button>
+    <div id="publicKey"></div>
+
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
+    <script>
+        // Function to connect to the user's wallet
+        async function connectWallet() {
+            if (window.solana) {
+                try {
+                    const wallet = await window.solana.connect();
+                    document.getElementById('publicKey').innerText = 'Connected Wallet: ' + wallet.publicKey.toString();
+                } catch (err) {
+                    console.error('Connection failed!', err);
+                }
+            } else {
+                alert('Please install a Solana wallet like Phantom');
+            }
+        }
+
+        document.getElementById('connectButton').addEventListener('click', connectWallet);
+    </script>
+</body>
+</html>
