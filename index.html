@@ -3,135 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Punk Style Lottery DApp</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Courier New', Courier, monospace;
-            background-color: #1a1a1a;
-            color: #e6e6e6;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        header {
-            width: 100%;
-            padding: 20px;
-            background-color: #333;
-            display: flex;
-            justify-content: flex-end;
-        }
-        header button {
-            padding: 10px 20px;
-            background-color: #ff1e56;
-            border: none;
-            color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        header button:hover {
-            background-color: #ff4f7a;
-        }
-        .container {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            width: 100%;
-            max-width: 1200px;
-            padding: 50px 20px;
-        }
-        .game-section {
-            background-color: #282828;
-            padding: 20px;
-            width: 30%;
-            border: 2px solid #ff1e56;
-            border-radius: 10px;
-            text-align: center;
-        }
-        .game-section h2 {
-            margin-top: 0;
-            color: #ff1e56;
-            font-size: 24px;
-        }
-        .game-section p {
-            margin: 20px 0;
-            font-size: 18px;
-        }
-        .game-section button {
-            padding: 10px 20px;
-            background-color: #ff1e56;
-            border: none;
-            color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .game-section button:hover {
-            background-color: #ff4f7a;
-        }
-    </style>
+    <title>Punk Lottery DApp</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
     <header>
-        <button id="connectButton">Connect MetaMask</button>
+        <h1>Punk Lottery DApp</h1>
+        <button id="connectButton">Connect Wallet</button>
     </header>
 
-    <div class="container">
-        <div class="game-section">
-            <h2>Game 1</h2>
-            <p>Game description or details go here.</p>
-            <button id="playGame1">Play Game 1</button>
-        </div>
+    <main>
+        <!-- 游戏板块一 -->
+        <section class="game-section" id="game1">
+            <h2>Game 1: Lottery</h2>
+            <button onclick="participateInGame1()">Participate</button>
+            <button onclick="getGame1Progress()">Get Progress</button>
+            <button onclick="getGame1Winners()">Get Winners</button>
+            <div class="result" id="game1Result"></div>
+        </section>
 
-        <div class="game-section">
-            <h2>Game 2</h2>
-            <p>Game description or details go here.</p>
-            <button id="playGame2">Play Game 2</button>
-        </div>
+        <!-- 游戏板块二 -->
+        <section class="game-section" id="game2">
+            <h2>Game 2: Big Lottery</h2>
+            <button onclick="participateInGame2()">Participate</button>
+            <button onclick="getGame2Progress()">Get Progress</button>
+            <button onclick="getGame2Winners()">Get Winners</button>
+            <div class="result" id="game2Result"></div>
+        </section>
 
-        <div class="game-section">
-            <h2>Game 3</h2>
-            <p>Game description or details go here.</p>
-            <button id="playGame3">Play Game 3</button>
-        </div>
-    </div>
+        <!-- 游戏板块三 -->
+        <section class="game-section" id="game3">
+            <h2>Game 3: Guessing Game</h2>
+            <button onclick="participateInGame3()">Participate</button>
+            <button onclick="getGame3Progress()">Get Progress</button>
+            <button onclick="getGame3Winners()">Get Winners</button>
+            <div class="result" id="game3Result"></div>
+        </section>
+    </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/@metamask/detect-provider/dist/detect-provider.min.js"></script>
-    <script>
-        // MetaMask connection
-        document.getElementById('connectButton').addEventListener('click', async () => {
-            const provider = await detectEthereumProvider();
-
-            if (provider) {
-                try {
-                    await provider.request({ method: 'eth_requestAccounts' });
-                    const accounts = await provider.request({ method: 'eth_accounts' });
-                    document.getElementById('connectButton').innerText = `Connected: ${accounts[0]}`;
-                } catch (error) {
-                    console.error(error);
-                }
-            } else {
-                alert('Please install MetaMask!');
-            }
-        });
-
-        // Placeholder functions for game buttons
-        document.getElementById('playGame1').addEventListener('click', () => {
-            // Connect with smart contract for Game 1
-            alert('Play Game 1 clicked!');
-        });
-
-        document.getElementById('playGame2').addEventListener('click', () => {
-            // Connect with smart contract for Game 2
-            alert('Play Game 2 clicked!');
-        });
-
-        document.getElementById('playGame3').addEventListener('click', () => {
-            // Connect with smart contract for Game 3
-            alert('Play Game 3 clicked!');
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
